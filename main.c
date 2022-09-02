@@ -12,6 +12,7 @@
 
 
 char * _strdup(const char * str) {
+    //hola
     char * aux = (char *)malloc(strlen(str) + 1);
     strcpy(aux, str);
     return aux;
