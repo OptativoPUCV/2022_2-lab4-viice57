@@ -44,21 +44,21 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
-    Pair * new = createPair(key, value);
-    size_t i = hash(key, map->capacity);
+  Pair * newPair = createPair(key, value);
+  size_t i = hash(key, map->capacity);
 
-    while(1) {
-      if(!map->buckets[i] || !map->buckets[i]->key) {
-        map->buckets[i] = new;
-        map->size++;
-        map->current = i;
-        break;
-      }
-
-      i++;
-
-      if(i == map->capacity) i = 0;
+  while(1) {
+    if(!map->buckets[i] || !map->buckets[i]->key) {
+      map->buckets[i] = newPair;
+      map->size++;
+      map->current = i;
+      break;
     }
+
+    i++;
+
+    if(i == map->capacity) i = 0;
+  }
 }
 
 void enlarge(HashMap * map) {
@@ -69,15 +69,16 @@ void enlarge(HashMap * map) {
 
 
 HashMap * createMap(long capacity) {
-    HashMap * newMap = (HashMap *)malloc(sizeof(HashMap));
+  HashMap * newMap = (HashMap *)malloc(sizeof(HashMap));
 
-    if(!newMap) return NULL;
-    newMap->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
-    newMap->size = 0;
-    newMap->capacity = capacity;
-    newMap->current = -1;
+  if(!newMap) return NULL;
   
-    return newMap;
+  newMap->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
+  newMap->size = 0;
+  newMap->capacity = capacity;
+  newMap->current = -1;
+  
+  return newMap;
 }
 
 void eraseMap(HashMap * map,  char * key) {    
