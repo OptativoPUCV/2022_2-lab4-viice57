@@ -107,15 +107,36 @@ Pair * searchMap(HashMap * map,  char * key) {
       if(cont == map->capacity) break;
       if(i == map->capacity) i = 0;
     }
-  return NULL;
+  
+    return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
-    //Pair * first = searchMap(map, key);
-    return NULL;
+  size_t i = 0;
+
+  if(!map->size) return NULL;
+  
+  for(i; i < map->capacity; i++) {
+    if(map->buckets[i] && map->buckets[i]->key) {
+      map->current = i;
+      return map->buckets[i];
+    }
+  }
+  
+  return NULL;
 }
 
 Pair * nextMap(HashMap * map) {
-
-    return NULL;
+  size_t i = map->current + 1;
+  
+  if(!map->size) return NULL;
+  
+  for(i; i < map->capacity; i++) {
+    if(map->buckets[i] && map->buckets[i]->key) {
+      map->current = i;
+      return map->buckets[i];
+    }
+  }
+  
+  return NULL;
 }
