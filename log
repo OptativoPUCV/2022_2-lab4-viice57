@@ -37,3 +37,17 @@ Fri 09 Sep 2022 12:39:28 PM UTC:
  1 file changed, 1 insertion(+), 1 deletion(-)
  tests:  0|0
 beba672
+Fri 09 Sep 2022 12:48:06 PM UTC: 
+ hashmap.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+In file included from test.c:4:
+hashmap.c: In function ‘createMap’:
+hashmap.c:62:47: error: implicit declaration of function ‘siezof’ [-Werror=implicit-function-declaration]
+   62 |     map->buckets = (Pair **) calloc(capacity, siezof(Pair *));
+      |                                               ^~~~~~
+hashmap.c:62:54: error: expected expression before ‘Pair’
+   62 |     map->buckets = (Pair **) calloc(capacity, siezof(Pair *));
+      |                                                      ^~~~
+cc1: all warnings being treated as errors
+Compilation failed
+a6c490c
