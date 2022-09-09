@@ -80,3 +80,27 @@ Fri 09 Sep 2022 12:49:21 PM UTC:
  tests:  1|5
 total_score: 10/70
 7103907
+Fri 09 Sep 2022 12:59:38 PM UTC: 
+ hashmap.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:49:5: error: unknown type name ‘Pairs’; did you mean ‘Pair’?
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |     ^~~~~
+      |     Pair
+hashmap.c:49:13: error: conflicting types for ‘p’
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |             ^
+hashmap.c:47:15: note: previous definition of ‘p’ was here
+   47 |     HashMap * p = createMap(1);
+      |               ^
+hashmap.c:49:17: error: initialization of ‘int *’ from incompatible pointer type ‘Pair *’ [-Werror=incompatible-pointer-types]
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |                 ^
+hashmap.c:49:13: error: unused variable ‘p’ [-Werror=unused-variable]
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |             ^
+cc1: all warnings being treated as errors
+Compilation failed
+788336a
