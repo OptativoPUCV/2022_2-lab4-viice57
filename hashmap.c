@@ -69,46 +69,46 @@ void enlarge(HashMap * map) {
 
 
 HashMap * createMap(long capacity) {
-    HashMap * map = (HashMap *)malloc(sizeof(HashMap));
+    HashMap * newMap = (HashMap *)malloc(sizeof(HashMap));
 
-    if(!map) return NULL;
-    map->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
-    map->size = 0;
-    map->capacity = capacity;
-    map->current = -1;
+    if(!newMap) return NULL;
+    newMap->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
+    newMap->size = 0;
+    newMap->capacity = capacity;
+    newMap->current = -1;
   
-    return map;
+    return newMap;
 }
 
 void eraseMap(HashMap * map,  char * key) {    
-    Pair * eliminate = searchMap(map, key);
+  Pair * eliminatePair = searchMap(map, key);
 
-    if(eliminate) {
-      eliminate->key = NULL;
-      map->size--;
-    }
+  if(eliminatePair) {
+    eliminatePair->key = NULL;
+    map->size--;
+  }
 }
 
 Pair * searchMap(HashMap * map,  char * key) { 
-    size_t i = hash(key, map->capacity);
-    size_t cont = 0;
+  size_t i = hash(key, map->capacity);
+  size_t cont = 0;
 
-    while(1) {
-      if(!map->buckets[i] || !map->buckets[i]->key) break;
+  while(1) {
+    if(!map->buckets[i] || !map->buckets[i]->key) break;
       
-      if(is_equal(key, map->buckets[i]->key)) {
-          map->current = i;
-          return map->buckets[i];
-      }
-
-      i++;
-      cont++;
-      
-      if(cont == map->capacity) break;
-      if(i == map->capacity) i = 0;
+    if(is_equal(key, map->buckets[i]->key)) {
+      map->current = i;
+      return map->buckets[i];
     }
+
+    i++;
+    cont++;
+      
+    if(cont == map->capacity) break;
+    if(i == map->capacity) i = 0;
+  }
   
-    return NULL;
+  return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
