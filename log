@@ -51,3 +51,9 @@ hashmap.c:62:54: error: expected expression before ‘Pair’
 cc1: all warnings being treated as errors
 Compilation failed
 a6c490c
+Fri 09 Sep 2022 12:48:13 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ tests:  0|6
+total_score: 0/70
+16af925
