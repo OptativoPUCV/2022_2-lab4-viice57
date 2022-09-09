@@ -131,3 +131,16 @@ hashmap.c:52:6: error: request for member ‘value’ in something not a structu
 cc1: all warnings being treated as errors
 Compilation failed
 41b61a4
+Fri 09 Sep 2022 01:01:52 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:49:12: error: conflicting types for ‘p’
+   49 |     Pair * p = (Pair *) malloc(sizeof(Pair));
+      |            ^
+hashmap.c:47:15: note: previous definition of ‘p’ was here
+   47 |     HashMap * p = createMap(1);
+      |               ^
+Compilation failed
+b5a2b0f
