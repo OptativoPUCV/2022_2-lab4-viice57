@@ -275,3 +275,14 @@ hashmap.c:101:11: error: ‘cont’ may be used uninitialized in this function [
 cc1: all warnings being treated as errors
 Compilation failed
 6e8a59c
+Fri 09 Sep 2022 05:26:41 PM UTC: 
+ hashmap.c | 2 ++
+ 1 file changed, 2 insertions(+)
+In file included from test.c:4:
+hashmap.c: In function ‘searchMap’:
+hashmap.c:101:11: error: ‘cont’ may be used uninitialized in this function [-Werror=maybe-uninitialized]
+  101 |       cont++;
+      |       ~~~~^~
+cc1: all warnings being treated as errors
+Compilation failed
+8e678cc

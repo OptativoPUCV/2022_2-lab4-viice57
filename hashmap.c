@@ -103,6 +103,8 @@ Pair * searchMap(HashMap * map,  char * key) {
       if(cont == map->capacity) break;
       if(i == map->capacity) i = 0;
     }
+
+    return NULL;
 }
 
 Pair * firstMap(HashMap * map) {
