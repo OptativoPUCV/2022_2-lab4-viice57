@@ -203,3 +203,9 @@ hashmap.c:47:15: error: unused variable ‘pairs’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 45bfad1
+Fri 09 Sep 2022 01:19:44 PM UTC: 
+ hashmap.c | 18 +++++++++++++-----
+ 1 file changed, 13 insertions(+), 5 deletions(-)
+ tests:  5|4
+total_score: 30/70
+6a0a14f
