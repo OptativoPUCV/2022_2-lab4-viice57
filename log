@@ -161,3 +161,14 @@ hashmap.c:47:15: error: unused variable ‘map’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 ffbafb0
+Fri 09 Sep 2022 01:02:56 PM UTC: 
+ hashmap.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:47:15: error: unused variable ‘pairs’ [-Werror=unused-variable]
+   47 |     HashMap * pairs = createMap(1);
+      |               ^~~~~
+cc1: all warnings being treated as errors
+Compilation failed
+225091e
