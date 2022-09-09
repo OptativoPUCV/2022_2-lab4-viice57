@@ -104,3 +104,30 @@ hashmap.c:49:13: error: unused variable ‘p’ [-Werror=unused-variable]
 cc1: all warnings being treated as errors
 Compilation failed
 788336a
+Fri 09 Sep 2022 01:00:12 PM UTC: 
+ hashmap.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘insertMap’:
+hashmap.c:49:5: error: unknown type name ‘Pairs’; did you mean ‘Pair’?
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |     ^~~~~
+      |     Pair
+hashmap.c:49:13: error: conflicting types for ‘p’
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |             ^
+hashmap.c:47:15: note: previous definition of ‘p’ was here
+   47 |     HashMap * p = createMap(1);
+      |               ^
+hashmap.c:49:17: error: initialization of ‘int *’ from incompatible pointer type ‘Pair *’ [-Werror=incompatible-pointer-types]
+   49 |     Pairs * p = (Pair *) malloc(sizeof(Pair));
+      |                 ^
+hashmap.c:51:6: error: request for member ‘key’ in something not a structure or union
+   51 |     p->key = key;
+      |      ^~
+hashmap.c:52:6: error: request for member ‘value’ in something not a structure or union
+   52 |     p->value = value;
+      |      ^~
+cc1: all warnings being treated as errors
+Compilation failed
+41b61a4

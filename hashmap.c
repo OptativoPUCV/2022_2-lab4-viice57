@@ -48,7 +48,8 @@ void insertMap(HashMap * map, char * key, void * value) {
 
     Pairs * p = (Pair *) malloc(sizeof(Pair));
 
-  
+    p->key = key;
+    p->value = value;
 
 }
 
