@@ -109,7 +109,7 @@ Pair * searchMap(HashMap * map,  char * key) {
 }
 
 Pair * firstMap(HashMap * map) {
-    Pair * first = searchMap(map, key);
+    //Pair * first = searchMap(map, key);
     return NULL;
 }
 
