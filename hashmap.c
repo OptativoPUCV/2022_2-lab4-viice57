@@ -93,7 +93,8 @@ Pair * searchMap(HashMap * map,  char * key) {
     size_t i = hash(key, map->capacity);
     size_t cont = 0;
 
-    while(!map->buckets[i] && !map->buckets[i]->key) {
+    while(1) {
+      if(!map->buckets[i] || !map->buckets[i]->key) return NULL;
       if(is_equal(key, map->buckets[i]->key)) {
           map->current = i;
           return map->buckets[i];
