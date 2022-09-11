@@ -439,3 +439,17 @@ Sun 11 Sep 2022 07:49:30 PM UTC:
  tests:  17|0
 total_score: 70/70
 84b6cff
+Sun 11 Sep 2022 07:50:12 PM UTC: 
+ hashmap.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+In file included from test.c:4:
+hashmap.c: In function ‘enlarge’:
+hashmap.c:66:3: error: unknown type name ‘size’; did you mean ‘size_t’?
+   66 |   size t capacity = map->capacity;
+      |   ^~~~
+      |   size_t
+hashmap.c:66:10: error: expected ‘=’, ‘,’, ‘;’, ‘asm’ or ‘__attribute__’ before ‘capacity’
+   66 |   size t capacity = map->capacity;
+      |          ^~~~~~~~
+Compilation failed
+b9b3736
