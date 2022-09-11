@@ -63,22 +63,26 @@ void enlarge(HashMap * map) {
   enlarge_called = 1; //no borrar (testing purposes)
   Pair ** oldBuckets = map->buckets; //se copia el antiguo par
 
-  size_t capacity = map->capacity;
-  size_t i;
+  size_t capacity = map->capacity; //se copia la capacidad del antiguo arreglo
+  size_t i; //contador
   map->capacity *= 2; //se dobla la capacidad del arreglo
-  map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *));
+  map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *)); //nuevo par
   map->size = 0;
 
+  //ciclo para la inserción de los elementos en el nuevo arreglo
   for(i = 0; i < capacity; i++) {
     if(oldBuckets[i]) insertMap(map, oldBuckets[i]->key, oldBuckets[i]->value);
   }
 }
 
 HashMap * createMap(long capacity) {
+  //creación del mapa
   HashMap * newMap = (HashMap *)malloc(sizeof(HashMap));
 
+  //comprobación de que exista
   if(!newMap) return NULL;
-  
+
+  //definiendo un nuevo par y valores por defecto
   newMap->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
   newMap->size = 0;
   newMap->capacity = capacity;
