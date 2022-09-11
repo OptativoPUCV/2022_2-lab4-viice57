@@ -43,11 +43,16 @@ int is_equal(void* key1, void* key2){
 }
 
 void insertMap(HashMap * map, char * key, void * value) {
+  //creación del par
   Pair * newPair = createPair(key, value);
+
+  //asignación del índice mediante f. hash
   size_t i = hash(key, map->capacity);
 
   while(1) {
+    //comprobación de que exista el par
     if(!map->buckets[i] || !map->buckets[i]->key) {
+      //asignamos  el nuevo par y cambiamos valores del mapa.
       map->buckets[i] = newPair;
       map->size++;
       map->current = i;
@@ -55,6 +60,7 @@ void insertMap(HashMap * map, char * key, void * value) {
     }
 
     i++;
+    //al ser circular, se parte nuevamente desde 0
     if(i == map->capacity) i = 0;
   }
 }
@@ -91,9 +97,11 @@ HashMap * createMap(long capacity) {
   return newMap;
 }
 
-void eraseMap(HashMap * map,  char * key) {    
+void eraseMap(HashMap * map,  char * key) {
+  //busqueda del elemento a partir de la clave
   Pair * eliminatePair = searchMap(map, key);
 
+  //si existe, su clave queda en null y se reduce el tamaño del arreglo
   if(eliminatePair) {
     eliminatePair->key = NULL;
     map->size--;
@@ -101,6 +109,7 @@ void eraseMap(HashMap * map,  char * key) {
 }
 
 Pair * searchMap(HashMap * map,  char * key) { 
+  //variable "i" para asignar el índice; variable "cont" para no exceder capacidad
   size_t i = hash(key, map->capacity);
   size_t cont = 0;
 
@@ -119,6 +128,8 @@ Pair * searchMap(HashMap * map,  char * key) {
 
     //comprobación de que no se exceda la capacidad del arreglo
     if(cont == map->capacity) break;
+
+    //al ser circular, se parte nuevamente desde 0
     if(i == map->capacity) i = 0;
   }
   
