@@ -105,8 +105,10 @@ Pair * searchMap(HashMap * map,  char * key) {
   size_t cont = 0;
 
   while(1) {
+    //comprobación de que exista el par
     if(!map->buckets[i] || !map->buckets[i]->key) break;
-      
+
+    //si son iguales, se cambia el current al actual "i"
     if(is_equal(key, map->buckets[i]->key)) {
       map->current = i;
       return map->buckets[i];
@@ -114,7 +116,8 @@ Pair * searchMap(HashMap * map,  char * key) {
 
     i++;
     cont++;
-      
+
+    //comprobación de que no se exceda la capacidad del arreglo
     if(cont == map->capacity) break;
     if(i == map->capacity) i = 0;
   }
