@@ -52,7 +52,7 @@ void insertMap(HashMap * map, char * key, void * value) {
   while(1) {
     //comprobación de que exista el par
     if(!map->buckets[i] || !map->buckets[i]->key) {
-      //asignamos  el nuevo par y cambiamos valores del mapa.
+      //asignamos  el nuevo par y cambiamos valores de la tabla.
       map->buckets[i] = newPair;
       map->size++;
       map->current = i;
@@ -69,13 +69,13 @@ void enlarge(HashMap * map) {
   enlarge_called = 1; //no borrar (testing purposes)
   Pair ** oldBuckets = map->buckets; //se copia el antiguo par
 
-  size_t capacity = map->capacity; //se copia la capacidad del antiguo arreglo
+  size_t capacity = map->capacity; //se copia la anterior capacidad
   size_t i; //contador
-  map->capacity *= 2; //se dobla la capacidad del arreglo
+  map->capacity *= 2; //se dobla la capacidad de la tabla
   map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *)); //nuevo par
   map->size = 0;
 
-  //ciclo para la inserción de los elementos en el nuevo arreglo
+  //ciclo para la inserción de los elementos en la "nueva" tabla
   for(i = 0; i < capacity; i++) {
     if(oldBuckets[i]) insertMap(map, oldBuckets[i]->key, oldBuckets[i]->value);
   }
@@ -88,7 +88,7 @@ HashMap * createMap(long capacity) {
   //comprobación de que exista
   if(!newMap) return NULL;
 
-  //definiendo un nuevo par y valores por defecto
+  //definiendo un nuevo par y valores por defecto de la tabla
   newMap->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
   newMap->size = 0;
   newMap->capacity = capacity;
@@ -101,7 +101,7 @@ void eraseMap(HashMap * map,  char * key) {
   //busqueda del elemento a partir de la clave
   Pair * eliminatePair = searchMap(map, key);
 
-  //si existe, su clave queda en null y se reduce el tamaño del arreglo
+  //si existe, su clave queda en null y se reduce el tamaño de la tabla
   if(eliminatePair) {
     eliminatePair->key = NULL;
     map->size--;
@@ -139,8 +139,10 @@ Pair * searchMap(HashMap * map,  char * key) {
 Pair * firstMap(HashMap * map) {
   size_t i;
 
+  //si la tabla no tiene tamaño, no existe.
   if(!map->size) return NULL;
-  
+
+  //ciclo para buscar el primer elemento, siempre y cuando exista algo.
   for(i = 0; i < map->capacity; i++) {
     if(map->buckets[i] && map->buckets[i]->key) {
       map->current = i;
