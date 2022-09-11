@@ -5,18 +5,17 @@
 #include <ctype.h>
 #include "hashmap.h"
 
-
 typedef struct HashMap HashMap;
 int enlarge_called = 0;
 
 struct HashMap {
-    Pair ** buckets;
-    long size; //cantidad de datos/pairs en la tabla
-    long capacity; //capacidad de la tabla
-    long current; //indice del ultimo dato accedido
+  Pair ** buckets;
+  long size; //cantidad de datos/pairs en la tabla
+  long capacity; //capacidad de la tabla
+  long current; //indice del ultimo dato accedido
 };
 
-Pair * createPair(char * key,  void * value) {
+Pair * createPair(char * key, void * value) {
   Pair * newPair = (Pair *) malloc(sizeof(Pair));
   
   newPair->key = key;
@@ -43,7 +42,6 @@ int is_equal(void* key1, void* key2){
   return 0;
 }
 
-
 void insertMap(HashMap * map, char * key, void * value) {
   Pair * newPair = createPair(key, value);
   size_t i = hash(key, map->capacity);
@@ -57,17 +55,23 @@ void insertMap(HashMap * map, char * key, void * value) {
     }
 
     i++;
-
     if(i == map->capacity) i = 0;
   }
 }
 
 void enlarge(HashMap * map) {
-    enlarge_called = 1; //no borrar (testing purposes)
+  enlarge_called = 1; //no borrar (testing purposes)
+  Pair ** oldBuckets = map->buckets; //se copia el antiguo par
 
+  map->capacity *= 2; //se dobla la capacidad del arreglo
+  map->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
+  map->size = 0;
+  size_t i;
 
+  for(i = 0; i < map->capacity; i++) {
+    if(oldBuckets[i]) insertMap(map, oldBuckets[i]->key, oldBuckets[i]->value);
+  }
 }
-
 
 HashMap * createMap(long capacity) {
   HashMap * newMap = (HashMap *)malloc(sizeof(HashMap));
