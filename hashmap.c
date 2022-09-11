@@ -64,9 +64,8 @@ void enlarge(HashMap * map) {
   Pair ** oldBuckets = map->buckets; //se copia el antiguo par
 
   map->capacity *= 2; //se dobla la capacidad del arreglo
-  map->buckets = (Pair **) calloc(capacity, sizeof(Pair *));
-  map->size = 0;
-  size_t i;
+  map->buckets = (Pair **) calloc(map->capacity, sizeof(Pair *));
+  map->size = 0;  size_t i;
 
   for(i = 0; i < map->capacity; i++) {
     if(oldBuckets[i]) insertMap(map, oldBuckets[i]->key, oldBuckets[i]->value);
