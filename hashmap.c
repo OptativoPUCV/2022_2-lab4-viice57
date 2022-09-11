@@ -142,7 +142,7 @@ Pair * firstMap(HashMap * map) {
   //si la tabla no tiene tamaño, no existe.
   if(!map->size) return NULL;
 
-  //ciclo para buscar el primer elemento, siempre y cuando exista algo.
+  //ciclo para buscar el primer elemento. Se retorna siempre y cuando exista algo.
   for(i = 0; i < map->capacity; i++) {
     if(map->buckets[i] && map->buckets[i]->key) {
       map->current = i;
@@ -156,8 +156,10 @@ Pair * firstMap(HashMap * map) {
 Pair * nextMap(HashMap * map) {
   size_t i;
   
+  //si la tabla no tiene tamaño, no existe.
   if(!map->size) return NULL;
   
+  //ciclo para buscar el elemento que sigue al current. Se retorna el par siempre y cuando exista algo.
   for(i = map->current + 1; i < map->capacity; i++) {
     if(map->buckets[i] && map->buckets[i]->key) {
       map->current = i;
