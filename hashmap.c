@@ -82,8 +82,8 @@ void enlarge(HashMap * map) {
 }
 
 HashMap * createMap(long capacity) {
-  //creación del mapa
-  HashMap * newMap = (HashMap *)malloc(sizeof(HashMap));
+  //reservando memoria para el mapa
+  HashMap * newMap = (HashMap *) malloc(sizeof(HashMap));
 
   //comprobación de que exista
   if(!newMap) return NULL;
@@ -117,7 +117,7 @@ Pair * searchMap(HashMap * map,  char * key) {
     //comprobación de que exista el par
     if(!map->buckets[i] || !map->buckets[i]->key) break;
 
-    //si son iguales, se cambia el current al actual "i"
+    //si son iguales, se cambia el current al actual "i" y se retorna el par buscado
     if(is_equal(key, map->buckets[i]->key)) {
       map->current = i;
       return map->buckets[i];
